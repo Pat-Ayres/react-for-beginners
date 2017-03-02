@@ -6,22 +6,31 @@ class AddFishForm extends React.Component {
         this.createFish = this.createFish.bind(this);
     }
     createFish(e) {
-        event.preventDefault();
-        console.log("Gonna make some fish!");
-        console.log(this);
+        e.preventDefault();
+        console.log("Gonna make some fish! 🐡");
+        // console.log(this);
+        const fish = {
+            name: this.name.value,
+            price: this.price.value,
+            status: this.status.value,
+            desc: this.desc.value,
+            image: this.image.value
+        }
+        this.props.addFish(fish);
+        this.fishForm.reset();
     }
 
     render() {
         return (
-            <form className="fish-edit" onSubmit={this.createFish}>
-                <input type="text" placeholder="Fish Name" />
-                <input type="text" placeholder="Fish Price" />
-                <select>
+            <form className="fish-edit" onSubmit={this.createFish} ref={(input) => { this.fishForm = input }}>
+                <input type="text" placeholder="Fish Name" ref={(input) => { this.name = input }} />
+                <input type="text" placeholder="Fish Price" ref={(input) => { this.price = input }} />
+                <select ref={(input) => { this.status = input }} >
                     <option value="available">Fresh!</option>
                     <option value="unavailable">Sold Out!</option>
                 </select>
-                <textarea placeholder="Fish Desc"></textarea>
-                <input type="text" placeholder="Fish Image" />
+                <textarea placeholder="Fish Desc" ref={(input) => { this.desc = input }} ></textarea>
+                <input type="text" placeholder="Fish Image" ref={(input) => { this.image = input }} />
                 <button type="submit">+ Add Item</button>
             </form>
         )
