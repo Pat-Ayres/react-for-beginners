@@ -11,4 +11,9 @@ class OrderItem extends React.Component {
 
 }
 
+OrderItem.propTypes = {
+    name: React.PropTypes.string.isRequired,
+    price: React.PropTypes.string.isRequired
+}
+
 export default OrderItem
