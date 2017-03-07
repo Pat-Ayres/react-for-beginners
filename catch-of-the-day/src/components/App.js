@@ -10,7 +10,8 @@ class App extends React.Component {
     constructor() {
         super();
 
-        this.addFish = this.addFish.bind(this);
+        // use addFish method to show example of future proposed spec to eliminate need to bind methods to 'this' context in constructor
+        // this.addFish = this.addFish.bind(this);
         this.loadSamples = this.loadSamples.bind(this);
         this.addToOrder = this.addToOrder.bind(this);
         this.updateFish = this.updateFish.bind(this);
@@ -50,7 +51,8 @@ class App extends React.Component {
             JSON.stringify(nextState.order));
     }
 
-    addFish(fish) {
+    //using future proposed class spec for binding addFish method to "this" context convert to variable arrow function closed with semicolon
+    addFish = (fish) => {
         // update state
         // make a copy of state
         const fishes = { ...this.state.fishes };
@@ -59,7 +61,7 @@ class App extends React.Component {
         fishes[`fish-${timestamp}`] = fish;
         //set state
         this.setState({ fishes });
-    }
+    };
 
     updateFish(key, updatedFish) {
         const fishes = { ...this.state.fishes };
@@ -115,6 +117,7 @@ class App extends React.Component {
                     loadSamples={this.loadSamples}
                     fishes={this.state.fishes}
                     updateFish={this.updateFish}
+                    storeId={this.props.params.storeId}
                 />
             </div>
         )
